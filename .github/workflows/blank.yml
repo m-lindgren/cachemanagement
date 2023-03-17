@@ -16,10 +16,6 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    permissions:
-      contents: read
-      actions: write
-
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -45,7 +41,7 @@ jobs:
       - name: Remove old cache
         if: steps.this-cache.outputs.cache-hit == 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.MY_ARTIFACT_TOKEN }}
         run: |
           gh extension install actions/gh-actions-cache
           REPO=${{ github.repository }}
