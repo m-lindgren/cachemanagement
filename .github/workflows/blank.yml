@@ -69,6 +69,26 @@ jobs:
     if: ${{ github.event_name == 'push' ||
             github.event_name == 'workflow_dispatch' && github.ref_name == 'main' }}
     steps:
+      - name: Delete Old Artifacts
+        uses: actions/github-script@v6
+        id: artifact
+        with:
+          script: |
+            const res = await github.rest.actions.listArtifactsForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            })
+
+            res.data.artifacts
+              .filter(({ name }) => name === 'all-run-date'')
+              .forEach(({ id }) => {
+                github.rest.actions.deleteArtifact({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  artifact_id: id,
+                })
+              })
+
       - name: grab cache
         uses: actions/cache/restore@v3
         with:
