@@ -64,6 +64,10 @@ jobs:
           key: this-cache-key
 
   create-artifact:
+    permissions:
+      actions: write
+      contents: read
+
     needs: build
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' ||
