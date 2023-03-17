@@ -64,10 +64,6 @@ jobs:
           key: this-cache-key
 
   create-artifact:
-    permissions:
-      actions: write
-      contents: read
-
     needs: build
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'push' ||
@@ -77,6 +73,7 @@ jobs:
         uses: actions/github-script@v6
         id: artifact
         with:
+          github-token: ${{ MY_ARTIFACT_TOKEN }}
           script: |
             const res = await github.rest.actions.listArtifactsForRepo({
               owner: context.repo.owner,
