@@ -31,13 +31,13 @@ jobs:
           BRANCH=refs/pull/${{ github.event.pull_request.number }}/merge
 
           echo -n "Fetching list of cache keys:"
-          cacheKeysForPR=$(gh actions-cache list --limit 100 -R $REPO -B $BRANCH | tail -n +3 | cut -f 1 )
-          echo $cacheKeysForPR
+          KEYS=$(gh actions-cache list --limit 100 -R $REPO -B $BRANCH | cut -f 1 )
+          echo $KEYS
 
           ## Setting this to not fail the workflow while deleting cache keys.
           set +e
           echo "Deleting caches..."
-          for cacheKey in $cacheKeysForPR
+          for cacheKey in $KEYS
           do
               echo "Deleting" $cacheKey "from" $BRANCH
               gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
