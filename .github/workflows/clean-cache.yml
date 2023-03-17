@@ -38,7 +38,7 @@ jobs:
           echo "Deleting caches..."
           for cacheKey in $cacheKeysForPR
           do
-              echo "Deleting" $cacheKey
+              echo "Deleting" $cacheKey "from" $BRANCH
               gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
           done
           echo "Done"
