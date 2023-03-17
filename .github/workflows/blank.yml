@@ -29,6 +29,7 @@ jobs:
 
       - name: Display cache
         run: |
+          mkdir cachedir
           touch cachedir/entry
           cat cachedir/entry
 
