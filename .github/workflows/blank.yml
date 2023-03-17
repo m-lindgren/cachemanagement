@@ -80,7 +80,7 @@ jobs:
             })
 
             res.data.artifacts
-              .filter(({ name }) => name === 'all-run-date'')
+              .filter(({ name }) => name === 'all-run-date')
               .forEach(({ id }) => {
                 github.rest.actions.deleteArtifact({
                   owner: context.repo.owner,
