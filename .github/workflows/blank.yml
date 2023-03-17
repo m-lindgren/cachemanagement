@@ -66,6 +66,7 @@ jobs:
   create-artifact:
     needs: build
     if: false()
+    runs-on: ubuntu-latest
     steps:
       - name: grab cache
         uses: actions/cache/restore@v3
