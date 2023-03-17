@@ -66,8 +66,7 @@ jobs:
   create-artifact:
     needs: build
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' }}
-
+    if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
     steps:
       - name: grab cache
         uses: actions/cache/restore@v3
