@@ -73,7 +73,7 @@ jobs:
         uses: actions/github-script@v6
         id: artifact
         with:
-          github-token: ${{ MY_ARTIFACT_TOKEN }}
+          github-token: ${{ secrets.MY_ARTIFACT_TOKEN }}
           script: |
             const res = await github.rest.actions.listArtifactsForRepo({
               owner: context.repo.owner,
