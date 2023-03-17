@@ -62,3 +62,22 @@ jobs:
         with:
           path: cachedir
           key: this-cache-key
+
+  create-artifact:
+    needs: build
+    if: false()
+    steps:
+      - name: grab cache
+        uses: actions/cache/restore@v3
+        with:
+          path: cachedir
+          key: this-cache-key
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: all-run-date
+          path: cachedir
+          retention-days: 5
+
+
