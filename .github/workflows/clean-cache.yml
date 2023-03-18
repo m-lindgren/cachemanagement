@@ -31,7 +31,7 @@ jobs:
           BRANCH=refs/pull/${{ github.event.pull_request.number }}/merge
 
           echo -n "Fetching list of cache keys:"
-          KEYS=$(gh actions-cache list --limit 100 -R $REPO -B $BRANCH | tail -n +3 | cut -f 1 )
+          KEYS=$(gh actions-cache list --limit 100 -R $REPO -B $BRANCH | cut -f 1 )
           echo $KEYS
 
           ## Setting this to not fail the workflow while deleting cache keys.
