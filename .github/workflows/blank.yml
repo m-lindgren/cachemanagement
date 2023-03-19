@@ -41,7 +41,8 @@ jobs:
       - name: Remove old cache
         if: steps.this-cache.outputs.cache-hit == 'true'
         env:
-          GH_TOKEN: ${{ secrets.MY_ARTIFACT_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GH_TOKEN: ${{ secrets.MY_ARTIFACT_TOKEN }}
         run: |
           gh extension install actions/gh-actions-cache
           REPO=${{ github.repository }}
